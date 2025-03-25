@@ -2,6 +2,7 @@ package request
 
 import (
 	"encoding/json"
+	"jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
 )
 
 /*
@@ -13,23 +14,9 @@ import (
 type EclpIbdOrderDeclareOrderRequest struct {
 	apiParas map[string]interface{}
 
-	Version      string       `json:"version,omitempty"`
-	CustomsOrder CustomsOrder `json:"customsOrder,omitempty"`
-	GoodsList    []Goods      `json:"goodsList,omitempty"`
-}
-
-type CustomsOrder struct {
-	// 根据实际需求定义CustomsOrder的字段
-	// 例如：
-	OrderNo string `json:"orderNo,omitempty"`
-	// 其他字段...
-}
-
-type Goods struct {
-	// 根据实际需求定义Goods的字段
-	// 例如：
-	GoodsNo string `json:"goodsNo,omitempty"`
-	// 其他字段...
+	Version      string                                `json:"version,omitempty"`
+	CustomsOrder eclpIbdOrderDeclareOrder.CustomsOrder `json:"customsOrder,omitempty"`
+	GoodsList    []eclpIbdOrderDeclareOrder.Goods      `json:"goodsList,omitempty"`
 }
 
 func (r *EclpIbdOrderDeclareOrderRequest) GetApiMethodName() string {
@@ -61,20 +48,20 @@ func (r *EclpIbdOrderDeclareOrderRequest) GetVersion() string {
 	return r.Version
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) SetCustomsOrder(customsOrder CustomsOrder) {
+func (r *EclpIbdOrderDeclareOrderRequest) SetCustomsOrder(customsOrder eclpIbdOrderDeclareOrder.CustomsOrder) {
 	r.CustomsOrder = customsOrder
 	r.apiParas["customsOrder"] = customsOrder
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) GetCustomsOrder() CustomsOrder {
+func (r *EclpIbdOrderDeclareOrderRequest) GetCustomsOrder() eclpIbdOrderDeclareOrder.CustomsOrder {
 	return r.CustomsOrder
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) SetGoodsList(goodsList []Goods) {
+func (r *EclpIbdOrderDeclareOrderRequest) SetGoodsList(goodsList []eclpIbdOrderDeclareOrder.Goods) {
 	r.GoodsList = goodsList
 	r.apiParas["goodsList"] = goodsList
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) GetGoodsList() []Goods {
+func (r *EclpIbdOrderDeclareOrderRequest) GetGoodsList() []eclpIbdOrderDeclareOrder.Goods {
 	return r.GoodsList
 }

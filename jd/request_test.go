@@ -10,8 +10,8 @@ var deptNo string
 
 func init() {
 	client = NewClient("BB5039D6E7D11C7A481E092BF6350CB3", "")
-	client.AccessToken = "a521f0f1553c4bb2adeac44e2e061772mwyw"
-	deptNo = "EBU4418055058519"
+	client.AccessToken = ""
+	deptNo = ""
 }
 
 func TestClientExec_EclpGoodsQueryGoodsRecordRequest(t *testing.T) {

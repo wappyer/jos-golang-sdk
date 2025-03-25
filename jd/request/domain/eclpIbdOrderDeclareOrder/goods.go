@@ -1,7 +1,7 @@
 package eclpIbdOrderDeclareOrder
 
-// GoodsItem 定义了商品信息的结构体
-type GoodsItem struct {
+// Goods 定义了商品信息的结构体
+type Goods struct {
 	Gnum        int     `json:"gnum"`                  // 商品序号
 	IsvGoodsNo  string  `json:"isvGoodsNo"`            // 商家商品编码
 	SpGoodsNo   string  `json:"spGoodsNo"`             // 销售平台商品编码
