@@ -1,4 +1,4 @@
-module jos-golang-sdk
+module gitee.com/dimension-huimei/jos-golang-sdk
 
 go 1.23.1
 

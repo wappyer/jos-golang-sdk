@@ -1,6 +1,6 @@
 package jd
 
-import "jos-golang-sdk/jd/request"
+import "gitee.com/dimension-huimei/jos-golang-sdk/jd/request"
 
 // Request Assuming Request is an interface
 type Request interface {

@@ -2,7 +2,7 @@ package request
 
 import (
 	"encoding/json"
-	"jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
+	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
 )
 
 /*
