@@ -1,5 +1,5 @@
 module gitee.com/dimension-huimei/jos-golang-sdk
 
-go 1.23.1
+go 1.18
 
-require golang.org/x/text v0.23.0 // indirect
+require golang.org/x/text v0.22.0
