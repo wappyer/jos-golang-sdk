@@ -11,7 +11,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"reflect"
 	"sort"
 	"strings"
 	"time"
@@ -40,6 +39,49 @@ func NewClient(appKey, appSecret string) *Client {
 		charsetUtf8:  "UTF-8",
 		jsonParamKey: "360buy_param_json",
 	}
+}
+
+func (c *Client) Execute(request Request, accessToken string) (interface{}, error) {
+	sysParams := map[string]interface{}{
+		"app_key":   c.AppKey,
+		"v":         c.Version,
+		"method":    request.GetApiMethodName(),
+		"timestamp": c.getCurrentTimeFormatted(),
+	}
+
+	if accessToken != "" {
+		sysParams["access_token"] = accessToken
+	}
+
+	sysParams[c.jsonParamKey] = request.GetApiParas()
+	sysParams["sign"] = c.generateSign(sysParams)
+
+	resp, err := c.curl(c.ServerUrl, sysParams)
+	if err != nil {
+		return map[string]interface{}{
+			"code": err.Error(),
+			"msg":  err.Error(),
+		}, nil
+	}
+
+	var respObject interface{}
+	if c.Format == "json" {
+		err = json.Unmarshal([]byte(resp), &respObject)
+		if err != nil {
+			return map[string]interface{}{
+				"code": 0,
+				"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
+			}, nil
+		}
+	} else if c.Format == "xml" {
+		// XML parsing can be added here if needed
+		return map[string]interface{}{
+			"code": 0,
+			"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
+		}, nil
+	}
+
+	return respObject, nil
 }
 
 func (c *Client) generateSign(params map[string]interface{}) string {
@@ -103,78 +145,6 @@ func (c *Client) curl(serverUrl string, sysParams map[string]interface{}) (strin
 	}
 
 	return string(body), nil
-}
-
-func (c *Client) execute(request Request, accessToken string) (interface{}, error) {
-	sysParams := map[string]interface{}{
-		"app_key":   c.AppKey,
-		"v":         c.Version,
-		"method":    request.GetApiMethodName(),
-		"timestamp": c.getCurrentTimeFormatted(),
-	}
-
-	if accessToken != "" {
-		sysParams["access_token"] = accessToken
-	}
-
-	sysParams[c.jsonParamKey] = request.GetApiParas()
-	sysParams["sign"] = c.generateSign(sysParams)
-
-	resp, err := c.curl(c.ServerUrl, sysParams)
-	if err != nil {
-		return map[string]interface{}{
-			"code": err.Error(),
-			"msg":  err.Error(),
-		}, nil
-	}
-
-	var respObject interface{}
-	if c.Format == "json" {
-		err = json.Unmarshal([]byte(resp), &respObject)
-		if err != nil {
-			return map[string]interface{}{
-				"code": 0,
-				"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
-			}, nil
-		}
-	} else if c.Format == "xml" {
-		// XML parsing can be added here if needed
-		return map[string]interface{}{
-			"code": 0,
-			"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
-		}, nil
-	}
-
-	return respObject, nil
-}
-
-func (c *Client) Exec(paramsArray map[string]interface{}) (interface{}, error) {
-	if _, ok := paramsArray["method"]; !ok {
-		return nil, errors.New("no api name passed")
-	}
-
-	method := paramsArray["method"].(string)
-	requestClassName := UnderscoreToUpperCamelCase(method[9:]) + "Request"
-
-	req := NewRequest(requestClassName)
-	reqValue := reflect.ValueOf(req)
-
-	for paraKey, paraValue := range paramsArray {
-		setterMethodName := "Set" + cases.Title(language.Und, cases.NoLower).String(strings.Replace(paraKey, "_", "", -1))
-
-		mtd := reqValue.MethodByName(setterMethodName)
-		if !mtd.IsValid() {
-			continue
-		}
-		mtd.Call([]reflect.Value{reflect.ValueOf(paraValue)})
-	}
-
-	session, ok := paramsArray["session"].(string)
-	if !ok {
-		session = ""
-	}
-
-	return c.execute(req, session)
 }
 
 func (c *Client) getCurrentTimeFormatted() string {
