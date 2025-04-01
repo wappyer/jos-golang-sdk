@@ -1,7 +1,6 @@
 package request
 
 import (
-	"encoding/json"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
 )
 
@@ -30,12 +29,11 @@ func (r *EclpIbdOrderDeclareOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.ibd.order.declareOrder"
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) GetApiParas() string {
+func (r *EclpIbdOrderDeclareOrderRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpIbdOrderDeclareOrderRequest) Check() {

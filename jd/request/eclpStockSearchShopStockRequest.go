@@ -1,9 +1,5 @@
 package request
 
-import (
-	"encoding/json"
-)
-
 /*
  * jingdong.eclp.stock.searchShopStock
  * 店铺库存查询接口
@@ -33,12 +29,11 @@ func (r *EclpStockSearchShopStockRequest) GetApiMethodName() string {
 	return "jingdong.eclp.stock.searchShopStock"
 }
 
-func (r *EclpStockSearchShopStockRequest) GetApiParas() string {
+func (r *EclpStockSearchShopStockRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpStockSearchShopStockRequest) Check() {

@@ -1,9 +1,5 @@
 package request
 
-import (
-	"encoding/json"
-)
-
 /*
  * jingdong.eclp.order.queryOrderCustoms
  * 订单申报结果查询接口
@@ -33,12 +29,11 @@ func (r *EclpOrderQueryOrderCustomsRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.queryOrderCustoms"
 }
 
-func (r *EclpOrderQueryOrderCustomsRequest) GetApiParas() string {
+func (r *EclpOrderQueryOrderCustomsRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpOrderQueryOrderCustomsRequest) Check() {

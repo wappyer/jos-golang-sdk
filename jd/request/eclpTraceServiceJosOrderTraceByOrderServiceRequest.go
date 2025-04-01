@@ -1,9 +1,5 @@
 package request
 
-import (
-	"encoding/json"
-)
-
 /*
  * jingdong.eclp.trace.service.jos.OrderTr aceByOrderService
  * 商家按订单号查询物流轨迹接口
@@ -30,12 +26,11 @@ func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetApiMethodName() 
 	return "jingdong.eclp.trace.service.jos.OrderTraceByOrderService"
 }
 
-func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetApiParas() string {
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) Check() {

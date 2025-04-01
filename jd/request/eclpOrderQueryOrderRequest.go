@@ -1,9 +1,5 @@
 package request
 
-import (
-	"encoding/json"
-)
-
 /*
  * jingdong.eclp.order.queryOrder
  * 订单详情查询接口
@@ -26,12 +22,11 @@ func (r *EclpOrderQueryOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.queryOrder"
 }
 
-func (r *EclpOrderQueryOrderRequest) GetApiParas() string {
+func (r *EclpOrderQueryOrderRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpOrderQueryOrderRequest) Check() {

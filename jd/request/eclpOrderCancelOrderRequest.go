@@ -1,9 +1,5 @@
 package request
 
-import (
-	"encoding/json"
-)
-
 /*
  * jingdong.eclp.order.cancelOrder
  * 销售出库单取消
@@ -26,12 +22,11 @@ func (r *EclpOrderCancelOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.cancelOrder"
 }
 
-func (r *EclpOrderCancelOrderRequest) GetApiParas() string {
+func (r *EclpOrderCancelOrderRequest) GetApiParas() map[string]interface{} {
 	if len(r.apiParas) == 0 {
-		return "{}"
+		return map[string]interface{}{}
 	}
-	data, _ := json.Marshal(r.apiParas)
-	return string(data)
+	return r.apiParas
 }
 
 func (r *EclpOrderCancelOrderRequest) Check() {
