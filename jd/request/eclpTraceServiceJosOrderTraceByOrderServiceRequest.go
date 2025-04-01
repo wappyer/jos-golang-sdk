@@ -18,6 +18,14 @@ type EclpTraceServiceJosOrderTraceByOrderServiceRequest struct {
 	UserId   string `json:"userId,omitempty"`
 }
 
+func NewEclpTraceServiceJosOrderTraceByOrderServiceRequest() *EclpTraceServiceJosOrderTraceByOrderServiceRequest {
+	r := &EclpTraceServiceJosOrderTraceByOrderServiceRequest{
+		apiParas: make(map[string]interface{}),
+	}
+	r.Version = "1.0"
+	return r
+}
+
 func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetApiMethodName() string {
 	return "jingdong.eclp.trace.service.jos.OrderTraceByOrderService"
 }

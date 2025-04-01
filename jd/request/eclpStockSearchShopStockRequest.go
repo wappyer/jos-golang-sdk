@@ -22,6 +22,13 @@ type EclpStockSearchShopStockRequest struct {
 	PageNumber  int    `json:"pageNumber,omitempty"`
 }
 
+func NewEclpStockSearchShopStockRequest() *EclpStockSearchShopStockRequest {
+	r := &EclpStockSearchShopStockRequest{
+		apiParas: make(map[string]interface{}),
+	}
+	return r
+}
+
 func (r *EclpStockSearchShopStockRequest) GetApiMethodName() string {
 	return "jingdong.eclp.stock.searchShopStock"
 }

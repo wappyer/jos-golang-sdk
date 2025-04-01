@@ -16,6 +16,12 @@ type EclpOrderCancelOrderRequest struct {
 	EclpSoNo string `json:"eclpSoNo,omitempty"`
 }
 
+func NewEclpOrderCancelOrderRequest() *EclpOrderCancelOrderRequest {
+	return &EclpOrderCancelOrderRequest{
+		apiParas: make(map[string]interface{}),
+	}
+}
+
 func (r *EclpOrderCancelOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.cancelOrder"
 }

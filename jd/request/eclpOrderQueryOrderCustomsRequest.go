@@ -21,6 +21,14 @@ type EclpOrderQueryOrderCustomsRequest struct {
 	EndDate   string `json:"endDate,omitempty"`
 }
 
+func NewEclpOrderQueryOrderCustomsRequest() *EclpOrderQueryOrderCustomsRequest {
+	r := EclpOrderQueryOrderCustomsRequest{
+		apiParas: make(map[string]interface{}),
+	}
+	r.SetVersion("1.0")
+	return &r
+}
+
 func (r *EclpOrderQueryOrderCustomsRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.queryOrderCustoms"
 }

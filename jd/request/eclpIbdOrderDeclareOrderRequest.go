@@ -19,6 +19,13 @@ type EclpIbdOrderDeclareOrderRequest struct {
 	GoodsList    []eclpIbdOrderDeclareOrder.Goods      `json:"goodsList,omitempty"`
 }
 
+func NewEclpIbdOrderDeclareOrderRequest() *EclpIbdOrderDeclareOrderRequest {
+	r := &EclpIbdOrderDeclareOrderRequest{
+		apiParas: make(map[string]interface{}),
+	}
+	return r
+}
+
 func (r *EclpIbdOrderDeclareOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.ibd.order.declareOrder"
 }

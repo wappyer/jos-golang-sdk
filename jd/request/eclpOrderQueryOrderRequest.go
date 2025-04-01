@@ -16,6 +16,12 @@ type EclpOrderQueryOrderRequest struct {
 	EclpSoNo string `json:"eclpSoNo,omitempty"`
 }
 
+func NewEclpOrderQueryOrderRequest() *EclpOrderQueryOrderRequest {
+	return &EclpOrderQueryOrderRequest{
+		apiParas: make(map[string]interface{}),
+	}
+}
+
 func (r *EclpOrderQueryOrderRequest) GetApiMethodName() string {
 	return "jingdong.eclp.order.queryOrder"
 }
