@@ -29,9 +29,9 @@ type Client struct {
 	jsonParamKey   string
 }
 
-func NewClient(appKey, appSecret string) *Client {
+func NewClient(serverUrl, appKey, appSecret string) *Client {
 	return &Client{
-		ServerUrl:    "https://api.jd.com/routerjson",
+		ServerUrl:    serverUrl,
 		AppKey:       appKey,
 		AppSecret:    appSecret,
 		Version:      "2.0",
