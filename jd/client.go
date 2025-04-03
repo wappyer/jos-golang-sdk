@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request"
 	"golang.org/x/text/cases"
 	"golang.org/x/text/language"
 	"io/ioutil"
@@ -41,11 +42,11 @@ func NewClient(serverUrl, appKey, appSecret string) *Client {
 	}
 }
 
-func (c *Client) Execute(request Request, accessToken string) (interface{}, error) {
+func (c *Client) Execute(req request.Request, accessToken string) (err error) {
 	sysParams := map[string]interface{}{
 		"app_key":   c.AppKey,
 		"v":         c.Version,
-		"method":    request.GetApiMethodName(),
+		"method":    req.GetApiMethodName(),
 		"timestamp": c.getCurrentTimeFormatted(),
 	}
 
@@ -53,35 +54,32 @@ func (c *Client) Execute(request Request, accessToken string) (interface{}, erro
 		sysParams["access_token"] = accessToken
 	}
 
-	sysParams[c.jsonParamKey] = request.GetApiParas()
+	sysParams[c.jsonParamKey] = req.GetApiParas()
 	sysParams["sign"] = c.generateSign(sysParams)
 
 	resp, err := c.curl(c.ServerUrl, sysParams)
 	if err != nil {
-		return map[string]interface{}{
-			"code": err.Error(),
-			"msg":  err.Error(),
-		}, nil
+		err = errors.New(fmt.Sprintf("JD服务请求失败:%s", err))
+		return
 	}
 
-	var respObject interface{}
-	if c.Format == "json" {
-		err = json.Unmarshal([]byte(resp), &respObject)
-		if err != nil {
-			return map[string]interface{}{
-				"code": 0,
-				"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
-			}, nil
-		}
-	} else if c.Format == "xml" {
-		// XML parsing can be added here if needed
-		return map[string]interface{}{
-			"code": 0,
-			"msg":  "HTTP_RESPONSE_NOT_WELL_FORMED",
-		}, nil
+	if c.Format != "json" {
+		err = errors.New(fmt.Sprintf("无法识别%s消息格式:%s", c.Format, resp))
+		return
 	}
 
-	return respObject, nil
+	errorResp := request.ErrorResponse{}
+	if err = json.Unmarshal([]byte(resp), &errorResp); err == nil && errorResp.ErrorResp.Code != "" {
+		req.SetResponseError(errorResp)
+		return
+	}
+
+	if err = req.SetResponseData(resp); err != nil {
+		err = errors.New(fmt.Sprintf("格式化消息返回失败:%s", err))
+		return
+	}
+
+	return
 }
 
 func (c *Client) generateSign(params map[string]interface{}) string {

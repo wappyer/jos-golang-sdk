@@ -1,5 +1,7 @@
 package request
 
+import "encoding/json"
+
 /*
  * jingdong.eclp.goods.queryGoodsRecord
  * 跨境进口商家商品备案信息查询接口
@@ -8,7 +10,8 @@ package request
  */
 
 type EclpGoodsQueryGoodsRecordRequest struct {
-	apiParas   map[string]interface{}
+	apiParas map[string]interface{}
+
 	Version    string
 	DeptNo     string
 	IsvGoodsNo string
@@ -17,6 +20,9 @@ type EclpGoodsQueryGoodsRecordRequest struct {
 	PageSize   int
 	StartDate  string
 	EndDate    string
+
+	responseError ErrorResponse
+	responseData  interface{}
 }
 
 func NewEclpGoodsQueryGoodsRecordRequest() *EclpGoodsQueryGoodsRecordRequest {
@@ -115,4 +121,19 @@ func (r *EclpGoodsQueryGoodsRecordRequest) SetEndDate(endDate string) {
 
 func (r *EclpGoodsQueryGoodsRecordRequest) GetEndDate() string {
 	return r.EndDate
+}
+
+func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseError(err ErrorResponse) {
+	r.responseError = err
+}
+
+func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpGoodsQueryGoodsRecordRequest) GetResponse() (interface{}, ErrorResponse) {
+	return r.responseData, r.responseError
 }

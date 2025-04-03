@@ -1,6 +1,9 @@
 package request
 
-import "strings"
+import (
+	"encoding/json"
+	"strings"
+)
 
 /*
  * jingdong.eclp.goods.queryGoodsInfo
@@ -20,6 +23,25 @@ type EclpGoodsQueryGoodsInfoRequest struct {
 	Barcodes    []string `json:"barcodes,omitempty"`
 	PageNo      int      `json:"pageNo,omitempty"`
 	PageSize    int      `json:"pageSize,omitempty"`
+
+	responseError ErrorResponse
+	responseData  EclpGoodsQueryGoodsInfoResponse
+}
+
+type EclpGoodsQueryGoodsInfoResponse struct {
+	JingdongEclpGoodsQueryGoodsInfoResponce JingdongEclpGoodsQueryGoodsInfoResponce `json:"jingdong_eclp_goods_queryGoodsInfo_responce"`
+}
+
+type JingdongEclpGoodsQueryGoodsInfoResponce struct {
+	Code          string      `json:"code"`
+	GoodsInfoList []GoodsInfo `json:"goodsInfoList"`
+	RequestID     string      `json:"request_id"`
+}
+
+type GoodsInfo struct {
+	Barcodes string `json:"barcodes"`
+	DeptNo   string `json:"deptNo"`
+	GoodsNo  string `json:"goodsNo"`
 }
 
 func NewEclpGoodsQueryGoodsInfoRequest() *EclpGoodsQueryGoodsInfoRequest {
@@ -117,4 +139,19 @@ func (r *EclpGoodsQueryGoodsInfoRequest) SetPageSize(pageSize int) {
 
 func (r *EclpGoodsQueryGoodsInfoRequest) GetPageSize() int {
 	return r.PageSize
+}
+
+func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseError(err ErrorResponse) {
+	r.responseError = err
+}
+
+func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpGoodsQueryGoodsInfoRequest) GetResponse() (EclpGoodsQueryGoodsInfoResponse, ErrorResponse) {
+	return r.responseData, r.responseError
 }
