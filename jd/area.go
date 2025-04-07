@@ -1,17 +1,16 @@
-package service
+package jd
 
 import (
-	"gitee.com/dimension-huimei/jos-golang-sdk/jd"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request"
 	"strings"
 )
 
-func MatchJdAddress(client *jd.Client, province, city, county string) (address []string, errResp request.ErrorResp, err error) {
+func (c *Client) MatchJdAddress(province, city, county string) (address []string, errResp request.ErrorResp, err error) {
 	provinceId, cityId := 0, 0
 
 	// 匹配省
 	req := request.NewAreasProvinceGetRequest()
-	err = client.Execute(req, client.AccessToken)
+	err = c.Execute(req, c.AccessToken)
 	if err != nil {
 		return
 	}
@@ -31,7 +30,7 @@ func MatchJdAddress(client *jd.Client, province, city, county string) (address [
 	// 匹配市
 	cityReq := request.NewAreasCityGetRequest()
 	cityReq.SetParentId(provinceId)
-	err = client.Execute(cityReq, client.AccessToken)
+	err = c.Execute(cityReq, c.AccessToken)
 	if err != nil {
 		return
 	}
@@ -50,7 +49,7 @@ func MatchJdAddress(client *jd.Client, province, city, county string) (address [
 	// 匹配区县
 	countyReq := request.NewAreasCountyGetRequest()
 	countyReq.SetParentId(cityId)
-	err = client.Execute(countyReq, client.AccessToken)
+	err = c.Execute(countyReq, c.AccessToken)
 	if err != nil {
 		return
 	}
