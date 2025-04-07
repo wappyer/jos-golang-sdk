@@ -8,8 +8,18 @@ type AreasCountyGetRequest struct {
 	version  string
 	parentId int
 
-	responseError ErrorResponse
-	responseData  interface{}
+	responseError ErrorResp
+	responseData  AreasCountyGetResponse
+}
+
+type AreasCountyGetResponse struct {
+	JingdongAreasCountyGetResponce JingdongAreasCountyGetResponce `json:"jingdong_areas_county_get_responce"`
+}
+
+type JingdongAreasCountyGetResponce struct {
+	BaseAreaServiceResponse BaseAreaServiceResponse `json:"baseAreaServiceResponse"`
+	Code                    string                  `json:"code"`
+	RequestID               string                  `json:"request_id"`
 }
 
 func NewAreasCountyGetRequest() *AreasCountyGetRequest {
@@ -55,7 +65,7 @@ func (r *AreasCountyGetRequest) GetParentId() int {
 }
 
 func (r *AreasCountyGetRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err
+	r.responseError = err.ErrorResp
 }
 
 func (r *AreasCountyGetRequest) SetResponseData(data string) error {
@@ -65,6 +75,6 @@ func (r *AreasCountyGetRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *AreasCountyGetRequest) GetResponse() (interface{}, ErrorResponse) {
+func (r *AreasCountyGetRequest) GetResponse() (AreasCountyGetResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

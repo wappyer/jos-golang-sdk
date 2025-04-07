@@ -7,7 +7,7 @@ type AreasProvinceGetRequest struct {
 
 	version string
 
-	responseError ErrorResponse
+	responseError ErrorResp
 	responseData  AreasProvinceGetResponse
 }
 
@@ -68,7 +68,7 @@ func (r *AreasProvinceGetRequest) GetVersion() string {
 }
 
 func (r *AreasProvinceGetRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err
+	r.responseError = err.ErrorResp
 }
 
 func (r *AreasProvinceGetRequest) SetResponseData(data string) error {
@@ -78,6 +78,6 @@ func (r *AreasProvinceGetRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *AreasProvinceGetRequest) GetResponse() (AreasProvinceGetResponse, ErrorResponse) {
+func (r *AreasProvinceGetRequest) GetResponse() (AreasProvinceGetResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

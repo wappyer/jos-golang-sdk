@@ -8,7 +8,7 @@ type AreasCityGetRequest struct {
 	version  string
 	parentId int
 
-	responseError ErrorResponse
+	responseError ErrorResp
 	responseData  AreasCityGetResponse
 }
 
@@ -65,7 +65,7 @@ func (r *AreasCityGetRequest) GetParentId() int {
 }
 
 func (r *AreasCityGetRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err
+	r.responseError = err.ErrorResp
 }
 
 func (r *AreasCityGetRequest) SetResponseData(data string) error {
@@ -75,6 +75,6 @@ func (r *AreasCityGetRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *AreasCityGetRequest) GetResponse() (AreasCityGetResponse, ErrorResponse) {
+func (r *AreasCityGetRequest) GetResponse() (AreasCityGetResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

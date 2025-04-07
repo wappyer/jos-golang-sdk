@@ -1,29 +1,67 @@
 package service
 
 import (
-	"encoding/json"
-	"errors"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request"
+	"strings"
 )
 
-func MatchJdProvince(client *jd.Client, search string) (province string, errResp jd.ErrorResp, err error) {
+func MatchJdAddress(client *jd.Client, province, city, county string) (address []string, errResp request.ErrorResp, err error) {
+	provinceId, cityId := 0, 0
+
+	// 匹配省
 	req := request.NewAreasProvinceGetRequest()
-	dataResp, errResp, err := client.Execute(req, client.AccessToken)
-	if err != nil || errResp.Code != "" {
+	err = client.Execute(req, client.AccessToken)
+	if err != nil {
+		return
+	}
+	provinceResp, errResp := req.GetResponse()
+	if errResp.Code != "" {
 		return
 	}
 
-	resp := request.AreasProvinceGetResponse{}
-	if e := json.Unmarshal([]byte(dataResp), &resp); e != nil {
-		err = errors.New("格式化消息返回失败")
+	data := provinceResp.JingdongAreasProvinceGetResponce.BaseAreaServiceResponse.Data
+	for _, v := range data {
+		if strings.Index(province, v.AreaName) >= 0 {
+			address = append(address, v.AreaName)
+			provinceId = v.AreaID
+		}
+	}
+
+	// 匹配市
+	cityReq := request.NewAreasCityGetRequest()
+	cityReq.SetParentId(provinceId)
+	err = client.Execute(cityReq, client.AccessToken)
+	if err != nil {
 		return
 	}
-	data := resp.JingdongAreasProvinceGetResponce.BaseAreaServiceResponse.Data
+	cityResp, errResp := cityReq.GetResponse()
+	if errResp.Code != "" {
+		return
+	}
+	data = cityResp.JingdongAreasCityGetResponce.BaseAreaServiceResponse.Data
 	for _, v := range data {
-		if v.AreaName == search {
-			province = v.AreaName
-			return
+		if strings.Index(city, v.AreaName) >= 0 {
+			address = append(address, v.AreaName)
+			cityId = v.AreaID
+		}
+	}
+
+	// 匹配区县
+	countyReq := request.NewAreasCountyGetRequest()
+	countyReq.SetParentId(cityId)
+	err = client.Execute(countyReq, client.AccessToken)
+	if err != nil {
+		return
+	}
+	countyResp, errResp := countyReq.GetResponse()
+	if errResp.Code != "" {
+		return
+	}
+	data = countyResp.JingdongAreasCountyGetResponce.BaseAreaServiceResponse.Data
+	for _, v := range data {
+		if strings.Index(county, v.AreaName) >= 0 {
+			address = append(address, v.AreaName)
 		}
 	}
 
