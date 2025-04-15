@@ -1,6 +1,7 @@
 package request
 
 import (
+	"encoding/json"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
 )
 
@@ -16,6 +17,9 @@ type EclpIbdOrderDeclareOrderRequest struct {
 	Version      string                                `json:"version,omitempty"`
 	CustomsOrder eclpIbdOrderDeclareOrder.CustomsOrder `json:"customsOrder,omitempty"`
 	GoodsList    []eclpIbdOrderDeclareOrder.Goods      `json:"goodsList,omitempty"`
+
+	responseError ErrorResp
+	responseData  interface{}
 }
 
 func NewEclpIbdOrderDeclareOrderRequest() *EclpIbdOrderDeclareOrderRequest {
@@ -69,4 +73,19 @@ func (r *EclpIbdOrderDeclareOrderRequest) SetGoodsList(goodsList []eclpIbdOrderD
 
 func (r *EclpIbdOrderDeclareOrderRequest) GetGoodsList() []eclpIbdOrderDeclareOrder.Goods {
 	return r.GoodsList
+}
+
+func (r *EclpIbdOrderDeclareOrderRequest) SetResponseError(err ErrorResponse) {
+	r.responseError = err.ErrorResp
+}
+
+func (r *EclpIbdOrderDeclareOrderRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpIbdOrderDeclareOrderRequest) GetResponse() (interface{}, ErrorResp) {
+	return r.responseData, r.responseError
 }
