@@ -50,7 +50,17 @@ type EclpIbdGoodsTransportGoodsInfoRequest struct {
 	GoodsNameEn     string  `json:"goodsNameEn,omitempty"`
 
 	responseError ErrorResp
-	responseData  interface{}
+	responseData  EclpIbdGoodsTransportGoodsInfoResponse
+}
+
+type EclpIbdGoodsTransportGoodsInfoResponse struct {
+	JingdongEclpIbdGoodsTransportGoodsInfoResponce JingdongEclpIbdGoodsTransportGoodsInfoResponce `json:"jingdong_eclp_ibd_goods_transportGoodsInfo_responce"`
+}
+
+type JingdongEclpIbdGoodsTransportGoodsInfoResponce struct {
+	Code      string `json:"code"`
+	GoodsNo   string `json:"goodsNo"`
+	RequestID string `json:"request_id"`
 }
 
 func NewEclpIbdGoodsTransportGoodsInfoRequest() *EclpIbdGoodsTransportGoodsInfoRequest {
@@ -81,6 +91,6 @@ func (r *EclpIbdGoodsTransportGoodsInfoRequest) SetResponseData(data string) err
 	return nil
 }
 
-func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetResponse() (interface{}, ErrorResp) {
+func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetResponse() (EclpIbdGoodsTransportGoodsInfoResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

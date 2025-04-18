@@ -51,7 +51,7 @@ type CustomsOrder struct {
 	GoodsValue              float64  `json:"goodsValue"`                   // 商品价格
 	Weight                  float64  `json:"weight"`                       // 订单总毛重
 	NetWeight               float64  `json:"netWeight"`                    // 订单总净重
-	BatchNumbers            *string  `json:"batchNumbers,omitempty"`       // 商品批次号（可选）
+	BatchNumbers            string   `json:"batchNumbers,omitempty"`       // 商品批次号（可选）
 	BuyerRegNo              string   `json:"buyerRegNo"`                   // 订购人注册号
 	BuyerPhone              string   `json:"buyerPhone"`                   // 订购人电话
 	BuyerName               string   `json:"buyerName"`                    // 订购人姓名
