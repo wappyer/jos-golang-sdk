@@ -108,7 +108,7 @@ type CustomsOrder struct {
 	SenderCityEN            *string  `json:"senderCityEN,omitempty"`       // 发件人英文城市（可选）
 	SenderAddrEN            *string  `json:"senderAddrEN,omitempty"`       // 发件人英文地址（可选）
 	ConsigneeIdType         *string  `json:"consigneeIdType,omitempty"`    // 证件类型（可选）
-	WrapType                *string  `json:"wrapType,omitempty"`           // 包装种类（可选）
+	WrapType                string   `json:"wrapType,omitempty"`           // 包装种类（可选）
 	Oaid                    *string  `json:"oaid,omitempty"`               // 京东零售订单oaid（可选）
 }
 
