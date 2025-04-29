@@ -1,6 +1,7 @@
 package eclpIbdOrderDeclareOrder
 
 // Goods 定义了商品信息的结构体
+// "@type": "java.util.List"
 type Goods struct {
 	apiParas map[string]interface{}
 
@@ -15,9 +16,7 @@ type Goods struct {
 
 func NewGoods() *Goods {
 	return &Goods{
-		apiParas: map[string]interface{}{
-			"@type": "java.util.List",
-		},
+		apiParas: map[string]interface{}{},
 	}
 }
 

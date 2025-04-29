@@ -1,6 +1,7 @@
 package eclpIbdOrderDeclareOrder
 
 // CustomsOrder 定义了跨境订单申报的主结构体
+// "@type": "com.jd.eclp.isv.domain.so.OrderCustomsParam"
 type CustomsOrder struct {
 	apiParas map[string]interface{}
 
@@ -114,9 +115,7 @@ type CustomsOrder struct {
 
 func NewCustomsOrder() *CustomsOrder {
 	return &CustomsOrder{
-		apiParas: map[string]interface{}{
-			"@type": "com.jd.eclp.isv.domain.so.OrderCustomsParam",
-		},
+		apiParas: map[string]interface{}{},
 	}
 }
 
