@@ -18,3 +18,7 @@ type ErrorResp struct {
 	RequestID string `json:"request_id"`
 	ZhDesc    string `json:"zh_desc"`
 }
+
+type ApiParams interface {
+	GetApiParas() map[string]interface{}
+}
