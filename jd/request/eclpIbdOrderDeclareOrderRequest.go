@@ -19,7 +19,17 @@ type EclpIbdOrderDeclareOrderRequest struct {
 	GoodsList    []eclpIbdOrderDeclareOrder.Goods      `json:"goodsList,omitempty"`
 
 	responseError ErrorResp
-	responseData  interface{}
+	responseData  EclpIbdOrderDeclareOrderResponse
+}
+
+type EclpIbdOrderDeclareOrderResponse struct {
+	JingdongEclpIbdOrderDeclareOrderResponce JingdongEclpIbdOrderDeclareOrderResponce `json:"jingdong_eclp_ibd_order_declareOrder_responce"`
+}
+
+type JingdongEclpIbdOrderDeclareOrderResponce struct {
+	Code      string `json:"code"`       // 响应码，"0"表示成功
+	EclpSoNo  string `json:"eclpSoNo"`   // ECLP 系统的订单编号
+	RequestID string `json:"request_id"` // 请求 ID
 }
 
 func NewEclpIbdOrderDeclareOrderRequest() *EclpIbdOrderDeclareOrderRequest {
@@ -91,6 +101,6 @@ func (r *EclpIbdOrderDeclareOrderRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *EclpIbdOrderDeclareOrderRequest) GetResponse() (interface{}, ErrorResp) {
+func (r *EclpIbdOrderDeclareOrderRequest) GetResponse() (EclpIbdOrderDeclareOrderResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

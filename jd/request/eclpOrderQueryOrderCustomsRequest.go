@@ -1,5 +1,7 @@
 package request
 
+import "encoding/json"
+
 /*
  * jingdong.eclp.order.queryOrderCustoms
  * 订单申报结果查询接口
@@ -7,21 +9,49 @@ package request
  */
 
 type EclpOrderQueryOrderCustomsRequest struct {
-	apiParas  map[string]interface{}
-	Version   string `json:"version,omitempty"`
-	DeptNo    string `json:"deptNo,omitempty"`
-	IsvUUID   string `json:"isvUUID,omitempty"`
-	PageNo    int    `json:"pageNo,omitempty"`
-	PageSize  int    `json:"pageSize,omitempty"`
-	StartDate string `json:"startDate,omitempty"`
-	EndDate   string `json:"endDate,omitempty"`
+	apiParas map[string]interface{}
+
+	DeptNo    string `json:"deptNo"`
+	IsvUUID   string `json:"isvUUID"`
+	PageNo    int    `json:"pageNo"`
+	PageSize  int    `json:"pageSize"`
+	StartDate string `json:"startDate"`
+	EndDate   string `json:"endDate"`
+
+	responseError ErrorResp
+	responseData  EclpOrderQueryOrderCustomsResponse
+}
+
+type EclpOrderQueryOrderCustomsResponse struct {
+	JingdongEclpOrderQueryOrderCustomsResponce JingdongEclpOrderQueryOrderCustomsResponce `json:"jingdong_eclp_order_queryOrderCustoms_responce"`
+}
+
+type JingdongEclpOrderQueryOrderCustomsResponce struct {
+	Code                    string                    `json:"code"`
+	QueryordercustomsResult []QueryordercustomsResult `json:"queryordercustoms_result"`
+	RequestID               string                    `json:"request_id"`
+}
+
+type QueryordercustomsResult struct {
+	CustomID      string `json:"customId"`
+	DeptNo        string `json:"deptNo"`
+	ErrorCode     string `json:"errorCode"`
+	GoodsCheck    int    `json:"goodsCheck"`
+	IsvUUID       string `json:"isvUUID"`
+	LogisticsCode string `json:"logisticsCode"`
+	Message       string `json:"message"`
+	Pattern       string `json:"pattern"`
+	ProcessStatus string `json:"processStatus"`
+	Result        int    `json:"result"`
+	SpSoNo        string `json:"spSoNo"`
+	StoreID       string `json:"storeId"`
+	Time          int64  `json:"time"`
 }
 
 func NewEclpOrderQueryOrderCustomsRequest() *EclpOrderQueryOrderCustomsRequest {
 	r := EclpOrderQueryOrderCustomsRequest{
 		apiParas: make(map[string]interface{}),
 	}
-	r.SetVersion("1.0")
 	return &r
 }
 
@@ -42,15 +72,6 @@ func (r *EclpOrderQueryOrderCustomsRequest) Check() {
 
 func (r *EclpOrderQueryOrderCustomsRequest) PutOtherTextParam(key string, value interface{}) {
 	r.apiParas[key] = value
-}
-
-func (r *EclpOrderQueryOrderCustomsRequest) SetVersion(version string) {
-	r.Version = version
-	r.apiParas["version"] = version
-}
-
-func (r *EclpOrderQueryOrderCustomsRequest) GetVersion() string {
-	return r.Version
 }
 
 func (r *EclpOrderQueryOrderCustomsRequest) SetDeptNo(deptNo string) {
@@ -105,4 +126,19 @@ func (r *EclpOrderQueryOrderCustomsRequest) SetEndDate(endDate string) {
 
 func (r *EclpOrderQueryOrderCustomsRequest) GetEndDate() string {
 	return r.EndDate
+}
+
+func (r *EclpOrderQueryOrderCustomsRequest) SetResponseError(err ErrorResponse) {
+	r.responseError = err.ErrorResp
+}
+
+func (r *EclpOrderQueryOrderCustomsRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderQueryOrderCustomsRequest) GetResponse() (EclpOrderQueryOrderCustomsResponse, ErrorResp) {
+	return r.responseData, r.responseError
 }
