@@ -1,5 +1,7 @@
 package request
 
+import "encoding/json"
+
 /*
  * jingdong.eclp.trace.service.jos.OrderTr aceByOrderService
  * 商家按订单号查询物流轨迹接口
@@ -8,10 +10,14 @@ package request
 
 type EclpTraceServiceJosOrderTraceByOrderServiceRequest struct {
 	apiParas map[string]interface{}
-	Version  string `json:"version,omitempty"`
-	OrderId  string `json:"orderId,omitempty"`
-	Role     string `json:"role,omitempty"`
-	UserId   string `json:"userId,omitempty"`
+
+	Version string `json:"version,omitempty"`
+	OrderId string `json:"orderId,omitempty"`
+	Role    string `json:"role,omitempty"`
+	UserId  string `json:"userId,omitempty"`
+
+	responseError ErrorResp
+	responseData  interface{}
 }
 
 func NewEclpTraceServiceJosOrderTraceByOrderServiceRequest() *EclpTraceServiceJosOrderTraceByOrderServiceRequest {
@@ -75,4 +81,35 @@ func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) SetUserId(userId st
 
 func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetUserId() string {
 	return r.UserId
+}
+
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetResponseError() ErrorResp {
+	return r.responseError
+}
+
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpTraceServiceJosOrderTraceByOrderServiceRequest) GetResponse() (interface{}, ErrorResp) {
+	return r.responseData, r.responseError
 }

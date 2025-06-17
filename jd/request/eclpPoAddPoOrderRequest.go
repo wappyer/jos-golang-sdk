@@ -90,12 +90,28 @@ func (r *EclpPoAddPoOrderRequest) GetApiParas() map[string]interface{} {
 	return r.apiParas
 }
 
-func (r *EclpPoAddPoOrderRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *EclpPoAddPoOrderRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpPoAddPoOrderRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpPoAddPoOrderRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpPoAddPoOrderRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil

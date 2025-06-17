@@ -64,12 +64,28 @@ func (r *AreasCountyGetRequest) GetParentId() int {
 	return r.parentId
 }
 
-func (r *AreasCountyGetRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *AreasCountyGetRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *AreasCountyGetRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *AreasCountyGetRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *AreasCountyGetRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil

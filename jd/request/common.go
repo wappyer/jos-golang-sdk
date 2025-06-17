@@ -4,8 +4,10 @@ package request
 type Request interface {
 	GetApiMethodName() string
 	GetApiParas() map[string]interface{}
-	SetResponseError(ErrorResponse)
+	SetResponseError(ErrorResp)
+	GetResponseError() ErrorResp
 	SetResponseData(string) error
+	GetResponseData(interface{}) error
 }
 
 type ErrorResponse struct {

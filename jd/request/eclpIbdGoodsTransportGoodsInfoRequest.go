@@ -80,12 +80,28 @@ func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetApiParas() map[string]interfa
 	return r.apiParas
 }
 
-func (r *EclpIbdGoodsTransportGoodsInfoRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *EclpIbdGoodsTransportGoodsInfoRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpIbdGoodsTransportGoodsInfoRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil

@@ -1,5 +1,7 @@
 package request
 
+import "encoding/json"
+
 /*
  * jingdong.eclp.order.cancelOrder
  * 销售出库单取消
@@ -8,8 +10,12 @@ package request
 
 type EclpOrderCancelOrderRequest struct {
 	apiParas map[string]interface{}
+
 	Version  string `json:"version,omitempty"`
 	EclpSoNo string `json:"eclpSoNo,omitempty"`
+
+	responseError ErrorResp
+	responseData  interface{}
 }
 
 func NewEclpOrderCancelOrderRequest() *EclpOrderCancelOrderRequest {
@@ -53,4 +59,35 @@ func (r *EclpOrderCancelOrderRequest) SetEclpSoNo(eclpSoNo string) {
 
 func (r *EclpOrderCancelOrderRequest) GetEclpSoNo() string {
 	return r.EclpSoNo
+}
+
+func (r *EclpOrderCancelOrderRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpOrderCancelOrderRequest) GetResponseError() ErrorResp {
+	return r.responseError
+}
+
+func (r *EclpOrderCancelOrderRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderCancelOrderRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderCancelOrderRequest) GetResponse() (interface{}, ErrorResp) {
+	return r.responseData, r.responseError
 }

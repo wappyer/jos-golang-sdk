@@ -1,6 +1,7 @@
 package request
 
 import (
+	"encoding/json"
 	"gitee.com/dimension-huimei/jos-golang-sdk/jd/request/domain/eclpIbdOrderDeclareOrder"
 )
 
@@ -11,10 +12,21 @@ import (
  */
 
 type EclpIbdOrderRedeclareOrderRequest struct {
-	apiParas     map[string]interface{}
+	apiParas map[string]interface{}
+
 	Version      string                                `json:"version,omitempty"`
 	CustomsOrder eclpIbdOrderDeclareOrder.CustomsOrder `json:"customsOrder,omitempty"`
 	GoodsList    []eclpIbdOrderDeclareOrder.Goods      `json:"goodsList,omitempty"`
+
+	responseError ErrorResp
+	responseData  EclpIbdOrderRedeclareOrderResponse
+}
+
+type EclpIbdOrderRedeclareOrderResponse struct {
+	JingdongEclpIbdOrderRedeclareOrderResponce JingdongEclpIbdOrderRedeclareOrderResponce `json:"jingdong_eclp_ibd_order_redeclareOrder_responce"`
+}
+
+type JingdongEclpIbdOrderRedeclareOrderResponce struct {
 }
 
 func NewEclpIbdOrderRedeclareOrderRequest() *EclpIbdOrderRedeclareOrderRequest {
@@ -68,4 +80,35 @@ func (r *EclpIbdOrderRedeclareOrderRequest) SetGoodsList(goodsList []eclpIbdOrde
 
 func (r *EclpIbdOrderRedeclareOrderRequest) GetGoodsList() []eclpIbdOrderDeclareOrder.Goods {
 	return r.GoodsList
+}
+
+func (r *EclpIbdOrderRedeclareOrderRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpIbdOrderRedeclareOrderRequest) GetResponseError() ErrorResp {
+	return r.responseError
+}
+
+func (r *EclpIbdOrderRedeclareOrderRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpIbdOrderRedeclareOrderRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpIbdOrderRedeclareOrderRequest) GetResponse() (EclpIbdOrderRedeclareOrderResponse, ErrorResp) {
+	return r.responseData, r.responseError
 }

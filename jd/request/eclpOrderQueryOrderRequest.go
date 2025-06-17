@@ -1,5 +1,7 @@
 package request
 
+import "encoding/json"
+
 /*
  * jingdong.eclp.order.queryOrder
  * 订单详情查询接口
@@ -8,8 +10,12 @@ package request
 
 type EclpOrderQueryOrderRequest struct {
 	apiParas map[string]interface{}
+
 	Version  string `json:"version,omitempty"`
 	EclpSoNo string `json:"eclpSoNo,omitempty"`
+
+	responseError ErrorResp
+	responseData  interface{}
 }
 
 func NewEclpOrderQueryOrderRequest() *EclpOrderQueryOrderRequest {
@@ -53,4 +59,35 @@ func (r *EclpOrderQueryOrderRequest) SetEclpSoNo(eclpSoNo string) {
 
 func (r *EclpOrderQueryOrderRequest) GetEclpSoNo() string {
 	return r.EclpSoNo
+}
+
+func (r *EclpOrderQueryOrderRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpOrderQueryOrderRequest) GetResponseError() ErrorResp {
+	return r.responseError
+}
+
+func (r *EclpOrderQueryOrderRequest) SetResponseData(data string) error {
+	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderQueryOrderRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderQueryOrderRequest) GetResponse() (interface{}, ErrorResp) {
+	return r.responseData, r.responseError
 }

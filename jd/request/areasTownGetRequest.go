@@ -8,7 +8,7 @@ type AreasTownGetRequest struct {
 	version  string
 	parentId int
 
-	responseError ErrorResponse
+	responseError ErrorResp
 	responseData  interface{}
 }
 
@@ -54,8 +54,12 @@ func (r *AreasTownGetRequest) GetParentId() int {
 	return r.parentId
 }
 
-func (r *AreasTownGetRequest) SetResponseError(err ErrorResponse) {
+func (r *AreasTownGetRequest) SetResponseError(err ErrorResp) {
 	r.responseError = err
+}
+
+func (r *AreasTownGetRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *AreasTownGetRequest) SetResponseData(data string) error {
@@ -65,6 +69,18 @@ func (r *AreasTownGetRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *AreasTownGetRequest) GetResponse() (interface{}, ErrorResponse) {
+func (r *AreasTownGetRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *AreasTownGetRequest) GetResponse() (interface{}, ErrorResp) {
 	return r.responseData, r.responseError
 }

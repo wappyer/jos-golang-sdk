@@ -24,7 +24,7 @@ type EclpGoodsQueryGoodsInfoRequest struct {
 	PageNo      int      `json:"pageNo,omitempty"`
 	PageSize    int      `json:"pageSize,omitempty"`
 
-	responseError ErrorResponse
+	responseError ErrorResp
 	responseData  EclpGoodsQueryGoodsInfoResponse
 }
 
@@ -141,8 +141,12 @@ func (r *EclpGoodsQueryGoodsInfoRequest) GetPageSize() int {
 	return r.PageSize
 }
 
-func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseError(err ErrorResponse) {
+func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseError(err ErrorResp) {
 	r.responseError = err
+}
+
+func (r *EclpGoodsQueryGoodsInfoRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseData(data string) error {
@@ -152,6 +156,18 @@ func (r *EclpGoodsQueryGoodsInfoRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *EclpGoodsQueryGoodsInfoRequest) GetResponse() (EclpGoodsQueryGoodsInfoResponse, ErrorResponse) {
+func (r *EclpGoodsQueryGoodsInfoRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpGoodsQueryGoodsInfoRequest) GetResponse() (EclpGoodsQueryGoodsInfoResponse, ErrorResp) {
 	return r.responseData, r.responseError
 }

@@ -75,12 +75,28 @@ func (r *EclpIbdOrderDeclareOrderCustomsRequest) GetGoodsList() []eclpIbdOrderDe
 	return r.GoodsList
 }
 
-func (r *EclpIbdOrderDeclareOrderCustomsRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *EclpIbdOrderDeclareOrderCustomsRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpIbdOrderDeclareOrderCustomsRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpIbdOrderDeclareOrderCustomsRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpIbdOrderDeclareOrderCustomsRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil

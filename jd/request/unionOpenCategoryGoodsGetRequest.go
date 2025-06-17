@@ -58,12 +58,28 @@ func (r *UnionOpenCategoryGoodsGetRequest) GetReq() UnionOpenCategoryGoodsGetReq
 	return r.req
 }
 
-func (r *UnionOpenCategoryGoodsGetRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *UnionOpenCategoryGoodsGetRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *UnionOpenCategoryGoodsGetRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *UnionOpenCategoryGoodsGetRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *UnionOpenCategoryGoodsGetRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil

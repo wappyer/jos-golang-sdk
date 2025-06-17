@@ -21,7 +21,7 @@ type EclpGoodsQueryGoodsRecordRequest struct {
 	StartDate  string
 	EndDate    string
 
-	responseError ErrorResponse
+	responseError ErrorResp
 	responseData  interface{}
 }
 
@@ -123,8 +123,12 @@ func (r *EclpGoodsQueryGoodsRecordRequest) GetEndDate() string {
 	return r.EndDate
 }
 
-func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseError(err ErrorResponse) {
+func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseError(err ErrorResp) {
 	r.responseError = err
+}
+
+func (r *EclpGoodsQueryGoodsRecordRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseData(data string) error {
@@ -134,6 +138,18 @@ func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseData(data string) error {
 	return nil
 }
 
-func (r *EclpGoodsQueryGoodsRecordRequest) GetResponse() (interface{}, ErrorResponse) {
+func (r *EclpGoodsQueryGoodsRecordRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpGoodsQueryGoodsRecordRequest) GetResponse() (interface{}, ErrorResp) {
 	return r.responseData, r.responseError
 }

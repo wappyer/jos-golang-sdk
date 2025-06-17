@@ -12,7 +12,6 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"os"
 	"sort"
 	"strings"
 	"time"
@@ -58,11 +57,6 @@ func (c *Client) Execute(req request.Request, accessToken string) (err error) {
 	sysParams[c.jsonParamKey] = req.GetApiParas()
 	sysParams["sign"] = c.generateSign(sysParams)
 
-	// 临时打印 todo:调试完删除
-	j, _ := json.Marshal(sysParams)
-	os.WriteFile("request.json", j, 0666)
-	// 临时打印 todo:调试完删除
-
 	resp, err := c.curl(c.ServerUrl, sysParams)
 	if err != nil {
 		err = errors.New(fmt.Sprintf("JD服务请求失败:%s", err))
@@ -76,13 +70,7 @@ func (c *Client) Execute(req request.Request, accessToken string) (err error) {
 
 	errorResp := request.ErrorResponse{}
 	if err = json.Unmarshal([]byte(resp), &errorResp); err == nil && errorResp.ErrorResp.Code != "" {
-
-		// 临时打印 todo:调试完删除
-		je, _ := json.Marshal(errorResp)
-		os.WriteFile("request_err.json", je, 0666)
-		// 临时打印 todo:调试完删除
-
-		req.SetResponseError(errorResp)
+		req.SetResponseError(errorResp.ErrorResp)
 		return
 	}
 

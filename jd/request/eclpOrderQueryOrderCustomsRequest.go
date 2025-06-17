@@ -128,12 +128,28 @@ func (r *EclpOrderQueryOrderCustomsRequest) GetEndDate() string {
 	return r.EndDate
 }
 
-func (r *EclpOrderQueryOrderCustomsRequest) SetResponseError(err ErrorResponse) {
-	r.responseError = err.ErrorResp
+func (r *EclpOrderQueryOrderCustomsRequest) SetResponseError(err ErrorResp) {
+	r.responseError = err
+}
+
+func (r *EclpOrderQueryOrderCustomsRequest) GetResponseError() ErrorResp {
+	return r.responseError
 }
 
 func (r *EclpOrderQueryOrderCustomsRequest) SetResponseData(data string) error {
 	if err := json.Unmarshal([]byte(data), &r.responseData); err != nil {
+		return err
+	}
+	return nil
+}
+
+func (r *EclpOrderQueryOrderCustomsRequest) GetResponseData(responseData interface{}) error {
+	tmp, err := json.Marshal(responseData)
+	if err != nil {
+		return err
+	}
+	err = json.Unmarshal(tmp, responseData)
+	if err != nil {
 		return err
 	}
 	return nil
