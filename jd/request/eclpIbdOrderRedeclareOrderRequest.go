@@ -27,6 +27,14 @@ type EclpIbdOrderRedeclareOrderResponse struct {
 }
 
 type JingdongEclpIbdOrderRedeclareOrderResponce struct {
+	Code      string `json:"code"`
+	RequestID string `json:"request_id"`
+	Result    Result `json:"result"`
+}
+
+type Result struct {
+	ResultCode string `json:"resultCode"`
+	Message    string `json:"message"`
 }
 
 func NewEclpIbdOrderRedeclareOrderRequest() *EclpIbdOrderRedeclareOrderRequest {
