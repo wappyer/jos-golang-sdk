@@ -120,536 +120,536 @@ func NewCustomsOrder() *CustomsOrder {
 }
 
 // GetApiParas 获取完整参数映射
-func (r CustomsOrder) GetApiParas() map[string]interface{} {
+func (r *CustomsOrder) GetApiParas() map[string]interface{} {
 	return r.apiParas
 }
 
-func (r CustomsOrder) SetIsvUUID(isvUUID string) {
+func (r *CustomsOrder) SetIsvUUID(isvUUID string) {
 	r.IsvUUID = isvUUID
 	r.apiParas["isvUUID"] = isvUUID
 }
 
-func (r CustomsOrder) SetIsvSource(isvSource string) {
+func (r *CustomsOrder) SetIsvSource(isvSource string) {
 	r.IsvSource = isvSource
 	r.apiParas["isvSource"] = isvSource
 }
 
-func (r CustomsOrder) SetPlatformId(platformId string) {
+func (r *CustomsOrder) SetPlatformId(platformId string) {
 	r.PlatformId = platformId
 	r.apiParas["platformId"] = platformId
 }
 
-func (r CustomsOrder) SetPlatformName(platformName string) {
+func (r *CustomsOrder) SetPlatformName(platformName string) {
 	r.PlatformName = platformName
 	r.apiParas["platformName"] = platformName
 }
 
-func (r CustomsOrder) SetPlatformType(platformType string) {
+func (r *CustomsOrder) SetPlatformType(platformType string) {
 	r.PlatformType = platformType
 	r.apiParas["platformType"] = platformType
 }
 
-func (r CustomsOrder) SetSpSoNo(spSoNo string) {
+func (r *CustomsOrder) SetSpSoNo(spSoNo string) {
 	r.SpSoNo = spSoNo
 	r.apiParas["spSoNo"] = spSoNo
 }
 
-func (r CustomsOrder) SetDeptNo(deptNo string) {
+func (r *CustomsOrder) SetDeptNo(deptNo string) {
 	r.DeptNo = deptNo
 	r.apiParas["deptNo"] = deptNo
 }
 
-func (r CustomsOrder) SetInJdwms(inJdwms string) {
+func (r *CustomsOrder) SetInJdwms(inJdwms string) {
 	r.InJdwms = inJdwms
 	r.apiParas["inJdwms"] = inJdwms
 }
 
-func (r CustomsOrder) SetSalesPlatformCreateTime(salesPlatformCreateTime string) {
+func (r *CustomsOrder) SetSalesPlatformCreateTime(salesPlatformCreateTime string) {
 	r.SalesPlatformCreateTime = salesPlatformCreateTime
 	r.apiParas["salesPlatformCreateTime"] = salesPlatformCreateTime
 }
 
-func (r CustomsOrder) SetVenderId(venderId string) {
+func (r *CustomsOrder) SetVenderId(venderId string) {
 	r.VenderId = venderId
 	r.apiParas["venderId"] = venderId
 }
 
-func (r CustomsOrder) SetVenderName(venderName string) {
+func (r *CustomsOrder) SetVenderName(venderName string) {
 	r.VenderName = venderName
 	r.apiParas["venderName"] = venderName
 }
 
-func (r CustomsOrder) SetConsigneeName(consigneeName string) {
+func (r *CustomsOrder) SetConsigneeName(consigneeName string) {
 	r.ConsigneeName = consigneeName
 	r.apiParas["consigneeName"] = consigneeName
 }
 
-func (r CustomsOrder) SetConsigneeMobile(consigneeMobile string) {
+func (r *CustomsOrder) SetConsigneeMobile(consigneeMobile string) {
 	r.ConsigneeMobile = consigneeMobile
 	r.apiParas["consigneeMobile"] = consigneeMobile
 }
 
-func (r CustomsOrder) SetConsigneePhone(consigneePhone string) {
+func (r *CustomsOrder) SetConsigneePhone(consigneePhone string) {
 	r.ConsigneePhone = consigneePhone
 	r.apiParas["consigneePhone"] = consigneePhone
 }
 
-func (r CustomsOrder) SetConsigneeEmail(consigneeEmail string) {
+func (r *CustomsOrder) SetConsigneeEmail(consigneeEmail string) {
 	r.ConsigneeEmail = consigneeEmail
 	r.apiParas["consigneeEmail"] = consigneeEmail
 }
 
-func (r CustomsOrder) SetConsigneeAddress(consigneeAddress string) {
+func (r *CustomsOrder) SetConsigneeAddress(consigneeAddress string) {
 	r.ConsigneeAddress = consigneeAddress
 	r.apiParas["consigneeAddress"] = consigneeAddress
 }
 
-func (r CustomsOrder) SetConsigneePostcode(consigneePostcode string) {
+func (r *CustomsOrder) SetConsigneePostcode(consigneePostcode string) {
 	r.ConsigneePostcode = consigneePostcode
 	r.apiParas["consigneePostcode"] = consigneePostcode
 }
 
-func (r CustomsOrder) SetConsigneeCountry(consigneeCountry string) {
+func (r *CustomsOrder) SetConsigneeCountry(consigneeCountry string) {
 	r.ConsigneeCountry = consigneeCountry
 	r.apiParas["consigneeCountry"] = consigneeCountry
 }
 
-func (r CustomsOrder) SetAddressProvince(addressProvince string) {
+func (r *CustomsOrder) SetAddressProvince(addressProvince string) {
 	r.AddressProvince = addressProvince
 	r.apiParas["addressProvince"] = addressProvince
 }
 
-func (r CustomsOrder) SetAddressCity(addressCity string) {
+func (r *CustomsOrder) SetAddressCity(addressCity string) {
 	r.AddressCity = addressCity
 	r.apiParas["addressCity"] = addressCity
 }
 
-func (r CustomsOrder) SetAddressCounty(addressCounty string) {
+func (r *CustomsOrder) SetAddressCounty(addressCounty string) {
 	r.AddressCounty = addressCounty
 	r.apiParas["addressCounty"] = addressCounty
 }
 
-func (r CustomsOrder) SetAddressTown(addressTown string) {
+func (r *CustomsOrder) SetAddressTown(addressTown string) {
 	r.AddressTown = addressTown
 	r.apiParas["addressTown"] = addressTown
 }
 
-func (r CustomsOrder) SetSoType(soType string) {
+func (r *CustomsOrder) SetSoType(soType string) {
 	r.SoType = soType
 	r.apiParas["soType"] = soType
 }
 
-func (r CustomsOrder) SetExpectDate(expectDate string) {
+func (r *CustomsOrder) SetExpectDate(expectDate string) {
 	r.ExpectDate = expectDate
 	r.apiParas["expectDate"] = expectDate
 }
 
-func (r CustomsOrder) SetInvoiceTitle(invoiceTitle string) {
+func (r *CustomsOrder) SetInvoiceTitle(invoiceTitle string) {
 	r.InvoiceTitle = invoiceTitle
 	r.apiParas["invoiceTitle"] = invoiceTitle
 }
 
-func (r CustomsOrder) SetInvoiceContent(invoiceContent string) {
+func (r *CustomsOrder) SetInvoiceContent(invoiceContent string) {
 	r.InvoiceContent = invoiceContent
 	r.apiParas["invoiceContent"] = invoiceContent
 }
 
-func (r CustomsOrder) SetDeclareOrder(declareOrder string) {
+func (r *CustomsOrder) SetDeclareOrder(declareOrder string) {
 	r.DeclareOrder = declareOrder
 	r.apiParas["declareOrder"] = declareOrder
 }
 
-func (r CustomsOrder) SetCcProvider(ccProvider string) {
+func (r *CustomsOrder) SetCcProvider(ccProvider string) {
 	r.CcProvider = ccProvider
 	r.apiParas["ccProvider"] = ccProvider
 }
 
-func (r CustomsOrder) SetCcProviderName(ccProviderName string) {
+func (r *CustomsOrder) SetCcProviderName(ccProviderName string) {
 	r.CcProviderName = ccProviderName
 	r.apiParas["ccProviderName"] = ccProviderName
 }
 
-func (r CustomsOrder) SetPostType(postType string) {
+func (r *CustomsOrder) SetPostType(postType string) {
 	r.PostType = postType
 	r.apiParas["postType"] = postType
 }
 
-func (r CustomsOrder) SetPattern(pattern string) {
+func (r *CustomsOrder) SetPattern(pattern string) {
 	r.Pattern = pattern
 	r.apiParas["pattern"] = pattern
 }
 
-func (r CustomsOrder) SetCustoms(customs string) {
+func (r *CustomsOrder) SetCustoms(customs string) {
 	r.Customs = customs
 	r.apiParas["customs"] = customs
 }
 
-func (r CustomsOrder) SetWarehouseNo(warehouseNo string) {
+func (r *CustomsOrder) SetWarehouseNo(warehouseNo string) {
 	r.WarehouseNo = warehouseNo
 	r.apiParas["warehouseNo"] = warehouseNo
 }
 
-func (r CustomsOrder) SetEbpCode(ebpCode string) {
+func (r *CustomsOrder) SetEbpCode(ebpCode string) {
 	r.EbpCode = ebpCode
 	r.apiParas["ebpCode"] = ebpCode
 }
 
-func (r CustomsOrder) SetEbpName(ebpName string) {
+func (r *CustomsOrder) SetEbpName(ebpName string) {
 	r.EbpName = ebpName
 	r.apiParas["ebpName"] = ebpName
 }
 
-func (r CustomsOrder) SetEbcCode(ebcCode string) {
+func (r *CustomsOrder) SetEbcCode(ebcCode string) {
 	r.EbcCode = ebcCode
 	r.apiParas["ebcCode"] = ebcCode
 }
 
-func (r CustomsOrder) SetEbcName(ebcName string) {
+func (r *CustomsOrder) SetEbcName(ebcName string) {
 	r.EbcName = ebcName
 	r.apiParas["ebcName"] = ebcName
 }
 
-func (r CustomsOrder) SetDelivery(delivery string) {
+func (r *CustomsOrder) SetDelivery(delivery string) {
 	r.Delivery = delivery
 	r.apiParas["delivery"] = delivery
 }
 
-func (r CustomsOrder) SetDiscount(discount float64) {
+func (r *CustomsOrder) SetDiscount(discount float64) {
 	r.Discount = discount
 	r.apiParas["discount"] = discount
 }
 
-func (r CustomsOrder) SetDiscountNote(discountNote string) {
+func (r *CustomsOrder) SetDiscountNote(discountNote string) {
 	r.DiscountNote = discountNote
 	r.apiParas["discountNote"] = discountNote
 }
 
-func (r CustomsOrder) SetIstax(istax string) {
+func (r *CustomsOrder) SetIstax(istax string) {
 	r.Istax = istax
 	r.apiParas["istax"] = istax
 }
 
-func (r CustomsOrder) SetTaxTotal(taxTotal float64) {
+func (r *CustomsOrder) SetTaxTotal(taxTotal float64) {
 	r.TaxTotal = taxTotal
 	r.apiParas["taxTotal"] = taxTotal
 }
 
-func (r CustomsOrder) SetFreight(freight float64) {
+func (r *CustomsOrder) SetFreight(freight float64) {
 	r.Freight = freight
 	r.apiParas["freight"] = freight
 }
 
-func (r CustomsOrder) SetOtherPrice(otherPrice float64) {
+func (r *CustomsOrder) SetOtherPrice(otherPrice float64) {
 	r.OtherPrice = otherPrice
 	r.apiParas["otherPrice"] = otherPrice
 }
 
-func (r CustomsOrder) SetGoodsValue(goodsValue float64) {
+func (r *CustomsOrder) SetGoodsValue(goodsValue float64) {
 	r.GoodsValue = goodsValue
 	r.apiParas["goodsValue"] = goodsValue
 }
 
-func (r CustomsOrder) SetWeight(weight float64) {
+func (r *CustomsOrder) SetWeight(weight float64) {
 	r.Weight = weight
 	r.apiParas["weight"] = weight
 }
 
-func (r CustomsOrder) SetNetWeight(netWeight float64) {
+func (r *CustomsOrder) SetNetWeight(netWeight float64) {
 	r.NetWeight = netWeight
 	r.apiParas["netWeight"] = netWeight
 }
 
-func (r CustomsOrder) SetBatchNumbers(batchNumbers string) {
+func (r *CustomsOrder) SetBatchNumbers(batchNumbers string) {
 	r.BatchNumbers = batchNumbers
 	r.apiParas["batchNumbers"] = batchNumbers
 }
 
-func (r CustomsOrder) SetBuyerRegNo(buyerRegNo string) {
+func (r *CustomsOrder) SetBuyerRegNo(buyerRegNo string) {
 	r.BuyerRegNo = buyerRegNo
 	r.apiParas["buyerRegNo"] = buyerRegNo
 }
 
-func (r CustomsOrder) SetBuyerPhone(buyerPhone string) {
+func (r *CustomsOrder) SetBuyerPhone(buyerPhone string) {
 	r.BuyerPhone = buyerPhone
 	r.apiParas["buyerPhone"] = buyerPhone
 }
 
-func (r CustomsOrder) SetBuyerName(buyerName string) {
+func (r *CustomsOrder) SetBuyerName(buyerName string) {
 	r.BuyerName = buyerName
 	r.apiParas["buyerName"] = buyerName
 }
 
-func (r CustomsOrder) SetBuyerIdType(buyerIdType string) {
+func (r *CustomsOrder) SetBuyerIdType(buyerIdType string) {
 	r.BuyerIdType = buyerIdType
 	r.apiParas["buyerIdType"] = buyerIdType
 }
 
-func (r CustomsOrder) SetBuyerIdNumber(buyerIdNumber string) {
+func (r *CustomsOrder) SetBuyerIdNumber(buyerIdNumber string) {
 	r.BuyerIdNumber = buyerIdNumber
 	r.apiParas["buyerIdNumber"] = buyerIdNumber
 }
 
-func (r CustomsOrder) SetSenderName(senderName string) {
+func (r *CustomsOrder) SetSenderName(senderName string) {
 	r.SenderName = senderName
 	r.apiParas["senderName"] = senderName
 }
 
-func (r CustomsOrder) SetSenderCompanyName(senderCompanyName string) {
+func (r *CustomsOrder) SetSenderCompanyName(senderCompanyName string) {
 	r.SenderCompanyName = senderCompanyName
 	r.apiParas["senderCompanyName"] = senderCompanyName
 }
 
-func (r CustomsOrder) SetSenderCountry(senderCountry string) {
+func (r *CustomsOrder) SetSenderCountry(senderCountry string) {
 	r.SenderCountry = senderCountry
 	r.apiParas["senderCountry"] = senderCountry
 }
 
-func (r CustomsOrder) SetSenderZip(senderZip string) {
+func (r *CustomsOrder) SetSenderZip(senderZip string) {
 	r.SenderZip = senderZip
 	r.apiParas["senderZip"] = senderZip
 }
 
-func (r CustomsOrder) SetSenderCity(senderCity string) {
+func (r *CustomsOrder) SetSenderCity(senderCity string) {
 	r.SenderCity = senderCity
 	r.apiParas["senderCity"] = senderCity
 }
 
-func (r CustomsOrder) SetSenderProvince(senderProvince string) {
+func (r *CustomsOrder) SetSenderProvince(senderProvince string) {
 	r.SenderProvince = senderProvince
 	r.apiParas["senderProvince"] = senderProvince
 }
 
-func (r CustomsOrder) SetSenderTel(senderTel string) {
+func (r *CustomsOrder) SetSenderTel(senderTel string) {
 	r.SenderTel = senderTel
 	r.apiParas["senderTel"] = senderTel
 }
 
-func (r CustomsOrder) SetSenderAddr(senderAddr string) {
+func (r *CustomsOrder) SetSenderAddr(senderAddr string) {
 	r.SenderAddr = senderAddr
 	r.apiParas["senderAddr"] = senderAddr
 }
 
-func (r CustomsOrder) SetCustomsRemark(customsRemark string) {
+func (r *CustomsOrder) SetCustomsRemark(customsRemark string) {
 	r.CustomsRemark = customsRemark
 	r.apiParas["customsRemark"] = customsRemark
 }
 
-func (r CustomsOrder) SetDeclarePaymentList(declarePaymentList string) {
+func (r *CustomsOrder) SetDeclarePaymentList(declarePaymentList string) {
 	r.DeclarePaymentList = declarePaymentList
 	r.apiParas["declarePaymentList"] = declarePaymentList
 }
 
-func (r CustomsOrder) SetPaymentType(paymentType string) {
+func (r *CustomsOrder) SetPaymentType(paymentType string) {
 	r.PaymentType = paymentType
 	r.apiParas["paymentType"] = paymentType
 }
 
-func (r CustomsOrder) SetPayCode(payCode string) {
+func (r *CustomsOrder) SetPayCode(payCode string) {
 	r.PayCode = payCode
 	r.apiParas["payCode"] = payCode
 }
 
-func (r CustomsOrder) SetPayName(payName string) {
+func (r *CustomsOrder) SetPayName(payName string) {
 	r.PayName = payName
 	r.apiParas["payName"] = payName
 }
 
-func (r CustomsOrder) SetPayTransactionId(payTransactionId string) {
+func (r *CustomsOrder) SetPayTransactionId(payTransactionId string) {
 	r.PayTransactionId = payTransactionId
 	r.apiParas["payTransactionId"] = payTransactionId
 }
 
-func (r CustomsOrder) SetCurrency(currency string) {
+func (r *CustomsOrder) SetCurrency(currency string) {
 	r.Currency = currency
 	r.apiParas["currency"] = currency
 }
 
-func (r CustomsOrder) SetPaymentConfirmTime(paymentConfirmTime string) {
+func (r *CustomsOrder) SetPaymentConfirmTime(paymentConfirmTime string) {
 	r.PaymentConfirmTime = paymentConfirmTime
 	r.apiParas["paymentConfirmTime"] = paymentConfirmTime
 }
 
-func (r CustomsOrder) SetShouldPay(shouldPay float64) {
+func (r *CustomsOrder) SetShouldPay(shouldPay float64) {
 	r.ShouldPay = shouldPay
 	r.apiParas["shouldPay"] = shouldPay
 }
 
-func (r CustomsOrder) SetReceiveNo(receiveNo string) {
+func (r *CustomsOrder) SetReceiveNo(receiveNo string) {
 	r.ReceiveNo = receiveNo
 	r.apiParas["receiveNo"] = receiveNo
 }
 
-func (r CustomsOrder) SetPayRemark(payRemark string) {
+func (r *CustomsOrder) SetPayRemark(payRemark string) {
 	r.PayRemark = payRemark
 	r.apiParas["payRemark"] = payRemark
 }
 
-func (r CustomsOrder) SetDeclareWaybill(declareWaybill string) {
+func (r *CustomsOrder) SetDeclareWaybill(declareWaybill string) {
 	r.DeclareWaybill = declareWaybill
 	r.apiParas["declareWaybill"] = declareWaybill
 }
 
-func (r CustomsOrder) SetLogisticsCode(logisticsCode string) {
+func (r *CustomsOrder) SetLogisticsCode(logisticsCode string) {
 	r.LogisticsCode = logisticsCode
 	r.apiParas["logisticsCode"] = logisticsCode
 }
 
-func (r CustomsOrder) SetLogisticsName(logisticsName string) {
+func (r *CustomsOrder) SetLogisticsName(logisticsName string) {
 	r.LogisticsName = logisticsName
 	r.apiParas["logisticsName"] = logisticsName
 }
 
-func (r CustomsOrder) SetBdOwnerNo(bdOwnerNo string) {
+func (r *CustomsOrder) SetBdOwnerNo(bdOwnerNo string) {
 	r.BdOwnerNo = bdOwnerNo
 	r.apiParas["bdOwnerNo"] = bdOwnerNo
 }
 
-func (r CustomsOrder) SetLogisticsNo(logisticsNo string) {
+func (r *CustomsOrder) SetLogisticsNo(logisticsNo string) {
 	r.LogisticsNo = logisticsNo
 	r.apiParas["logisticsNo"] = logisticsNo
 }
 
-func (r CustomsOrder) SetPackNo(packNo int) {
+func (r *CustomsOrder) SetPackNo(packNo int) {
 	r.PackNo = packNo
 	r.apiParas["packNo"] = packNo
 }
 
-func (r CustomsOrder) SetLogisticsRemark(logisticsRemark string) {
+func (r *CustomsOrder) SetLogisticsRemark(logisticsRemark string) {
 	r.LogisticsRemark = logisticsRemark
 	r.apiParas["logisticsRemark"] = logisticsRemark
 }
 
-func (r CustomsOrder) SetIsDelivery(isDelivery int) {
+func (r *CustomsOrder) SetIsDelivery(isDelivery int) {
 	r.IsDelivery = isDelivery
 	r.apiParas["isDelivery"] = isDelivery
 }
 
-func (r CustomsOrder) SetReceivable(receivable float64) {
+func (r *CustomsOrder) SetReceivable(receivable float64) {
 	r.Receivable = receivable
 	r.apiParas["receivable"] = receivable
 }
 
-func (r CustomsOrder) SetConsigneeRemark(consigneeRemark string) {
+func (r *CustomsOrder) SetConsigneeRemark(consigneeRemark string) {
 	r.ConsigneeRemark = consigneeRemark
 	r.apiParas["consigneeRemark"] = consigneeRemark
 }
 
-func (r CustomsOrder) SetInsuredPriceFlag(insuredPriceFlag string) {
+func (r *CustomsOrder) SetInsuredPriceFlag(insuredPriceFlag string) {
 	r.InsuredPriceFlag = insuredPriceFlag
 	r.apiParas["insuredPriceFlag"] = insuredPriceFlag
 }
 
-func (r CustomsOrder) SetInsuredValue(insuredValue float64) {
+func (r *CustomsOrder) SetInsuredValue(insuredValue float64) {
 	r.InsuredValue = insuredValue
 	r.apiParas["insuredValue"] = insuredValue
 }
 
-func (r CustomsOrder) SetInsuredFee(insuredFee float64) {
+func (r *CustomsOrder) SetInsuredFee(insuredFee float64) {
 	r.InsuredFee = insuredFee
 	r.apiParas["insuredFee"] = insuredFee
 }
 
-func (r CustomsOrder) SetShopNo(shopNo string) {
+func (r *CustomsOrder) SetShopNo(shopNo string) {
 	r.ShopNo = shopNo
 	r.apiParas["shopNo"] = shopNo
 }
 
-func (r CustomsOrder) SetIsSupervise(isSupervise int) {
+func (r *CustomsOrder) SetIsSupervise(isSupervise int) {
 	r.IsSupervise = isSupervise
 	r.apiParas["isSupervise"] = isSupervise
 }
 
-func (r CustomsOrder) SetInitalRequest(initalRequest string) {
+func (r *CustomsOrder) SetInitalRequest(initalRequest string) {
 	r.InitalRequest = initalRequest
 	r.apiParas["initalRequest"] = initalRequest
 }
 
-func (r CustomsOrder) SetInitalResponse(initalResponse string) {
+func (r *CustomsOrder) SetInitalResponse(initalResponse string) {
 	r.InitalResponse = initalResponse
 	r.apiParas["initalResponse"] = initalResponse
 }
 
-func (r CustomsOrder) SetPayTransactionIdYh(payTransactionIdYh string) {
+func (r *CustomsOrder) SetPayTransactionIdYh(payTransactionIdYh string) {
 	r.PayTransactionIdYh = payTransactionIdYh
 	r.apiParas["payTransactionIdYh"] = payTransactionIdYh
 }
 
-func (r CustomsOrder) SetIsvParentId(isvParentId string) {
+func (r *CustomsOrder) SetIsvParentId(isvParentId string) {
 	r.IsvParentId = isvParentId
 	r.apiParas["isvParentId"] = isvParentId
 }
 
-func (r CustomsOrder) SetIsvOrderIdList(isvOrderIdList string) {
+func (r *CustomsOrder) SetIsvOrderIdList(isvOrderIdList string) {
 	r.IsvOrderIdList = isvOrderIdList
 	r.apiParas["isvOrderIdList"] = isvOrderIdList
 }
 
-func (r CustomsOrder) SetTotalAmount(totalAmount float64) {
+func (r *CustomsOrder) SetTotalAmount(totalAmount float64) {
 	r.TotalAmount = totalAmount
 	r.apiParas["totalAmount"] = totalAmount
 }
 
-func (r CustomsOrder) SetVerDept(verDept int) {
+func (r *CustomsOrder) SetVerDept(verDept int) {
 	r.VerDept = verDept
 	r.apiParas["verDept"] = verDept
 }
 
-func (r CustomsOrder) SetPayType(payType int) {
+func (r *CustomsOrder) SetPayType(payType int) {
 	r.PayType = payType
 	r.apiParas["payType"] = payType
 }
 
-func (r CustomsOrder) SetRecpAccount(recpAccount string) {
+func (r *CustomsOrder) SetRecpAccount(recpAccount string) {
 	r.RecpAccount = recpAccount
 	r.apiParas["recpAccount"] = recpAccount
 }
 
-func (r CustomsOrder) SetRecpCode(recpCode string) {
+func (r *CustomsOrder) SetRecpCode(recpCode string) {
 	r.RecpCode = recpCode
 	r.apiParas["recpCode"] = recpCode
 }
 
-func (r CustomsOrder) SetRecpName(recpName string) {
+func (r *CustomsOrder) SetRecpName(recpName string) {
 	r.RecpName = recpName
 	r.apiParas["recpName"] = recpName
 }
 
-func (r CustomsOrder) SetConsNameEN(consNameEN string) {
+func (r *CustomsOrder) SetConsNameEN(consNameEN string) {
 	r.ConsNameEN = consNameEN
 	r.apiParas["consNameEN"] = consNameEN
 }
 
-func (r CustomsOrder) SetConsAddressEN(consAddressEN string) {
+func (r *CustomsOrder) SetConsAddressEN(consAddressEN string) {
 	r.ConsAddressEN = consAddressEN
 	r.apiParas["consAddressEN"] = consAddressEN
 }
 
-func (r CustomsOrder) SetSenderNameEN(senderNameEN string) {
+func (r *CustomsOrder) SetSenderNameEN(senderNameEN string) {
 	r.SenderNameEN = senderNameEN
 	r.apiParas["senderNameEN"] = senderNameEN
 }
 
-func (r CustomsOrder) SetSenderCityEN(senderCityEN string) {
+func (r *CustomsOrder) SetSenderCityEN(senderCityEN string) {
 	r.SenderCityEN = senderCityEN
 	r.apiParas["senderCityEN"] = senderCityEN
 }
 
-func (r CustomsOrder) SetSenderAddrEN(senderAddrEN string) {
+func (r *CustomsOrder) SetSenderAddrEN(senderAddrEN string) {
 	r.SenderAddrEN = senderAddrEN
 	r.apiParas["senderAddrEN"] = senderAddrEN
 }
 
-func (r CustomsOrder) SetConsigneeIdType(consigneeIdType string) {
+func (r *CustomsOrder) SetConsigneeIdType(consigneeIdType string) {
 	r.ConsigneeIdType = consigneeIdType
 	r.apiParas["consigneeIdType"] = consigneeIdType
 }
 
-func (r CustomsOrder) SetWrapType(wrapType string) {
+func (r *CustomsOrder) SetWrapType(wrapType string) {
 	r.WrapType = wrapType
 	r.apiParas["wrapType"] = wrapType
 }
 
-func (r CustomsOrder) SetOaid(oaid string) {
+func (r *CustomsOrder) SetOaid(oaid string) {
 	r.Oaid = oaid
 	r.apiParas["oaid"] = oaid
 }
