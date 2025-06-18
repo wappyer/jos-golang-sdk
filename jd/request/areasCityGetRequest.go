@@ -80,7 +80,7 @@ func (r *AreasCityGetRequest) SetResponseData(data string) error {
 }
 
 func (r *AreasCityGetRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

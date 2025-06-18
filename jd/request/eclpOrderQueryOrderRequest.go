@@ -77,7 +77,7 @@ func (r *EclpOrderQueryOrderRequest) SetResponseData(data string) error {
 }
 
 func (r *EclpOrderQueryOrderRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

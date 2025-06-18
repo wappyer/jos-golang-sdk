@@ -106,7 +106,7 @@ func (r *EclpPoAddPoOrderRequest) SetResponseData(data string) error {
 }
 
 func (r *EclpPoAddPoOrderRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

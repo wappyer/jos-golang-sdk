@@ -96,7 +96,7 @@ func (r *EclpIbdGoodsTransportGoodsInfoRequest) SetResponseData(data string) err
 }
 
 func (r *EclpIbdGoodsTransportGoodsInfoRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

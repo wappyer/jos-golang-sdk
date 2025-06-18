@@ -70,7 +70,7 @@ func (r *AreasTownGetRequest) SetResponseData(data string) error {
 }
 
 func (r *AreasTownGetRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

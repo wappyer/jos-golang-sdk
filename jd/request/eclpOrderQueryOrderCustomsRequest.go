@@ -144,7 +144,7 @@ func (r *EclpOrderQueryOrderCustomsRequest) SetResponseData(data string) error {
 }
 
 func (r *EclpOrderQueryOrderCustomsRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}

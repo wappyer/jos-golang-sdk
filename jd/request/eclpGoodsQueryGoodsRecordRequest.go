@@ -139,7 +139,7 @@ func (r *EclpGoodsQueryGoodsRecordRequest) SetResponseData(data string) error {
 }
 
 func (r *EclpGoodsQueryGoodsRecordRequest) GetResponseData(responseData interface{}) error {
-	tmp, err := json.Marshal(responseData)
+	tmp, err := json.Marshal(r.responseData)
 	if err != nil {
 		return err
 	}
