@@ -66,7 +66,7 @@ func (r *EclpIbdOrderRedeclareOrderRequest) GetVersion() string {
 
 func (r *EclpIbdOrderRedeclareOrderRequest) SetCustomsOrder(customsOrder eclpIbdOrderDeclareOrder.CustomsOrder) {
 	r.CustomsOrder = customsOrder
-	r.apiParas["customsOrder"] = customsOrder
+	r.apiParas["customsOrder"] = customsOrder.GetApiParas()
 }
 
 func (r *EclpIbdOrderRedeclareOrderRequest) GetCustomsOrder() interface{} {
@@ -75,7 +75,12 @@ func (r *EclpIbdOrderRedeclareOrderRequest) GetCustomsOrder() interface{} {
 
 func (r *EclpIbdOrderRedeclareOrderRequest) SetGoodsList(goodsList []eclpIbdOrderDeclareOrder.Goods) {
 	r.GoodsList = goodsList
-	r.apiParas["goodsList"] = goodsList
+
+	apiParamsGoodsList := make([]map[string]interface{}, len(goodsList))
+	for i, goods := range goodsList {
+		apiParamsGoodsList[i] = goods.GetApiParas()
+	}
+	r.apiParas["goodsList"] = apiParamsGoodsList
 }
 
 func (r *EclpIbdOrderRedeclareOrderRequest) GetGoodsList() []eclpIbdOrderDeclareOrder.Goods {
